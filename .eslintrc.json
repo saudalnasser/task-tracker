@@ -30,7 +30,24 @@
             "style": "kebab-case"
           }
         ],
-        "prettier/prettier": ["error", { "endOfLine": "auto" }]
+        "prettier/prettier": ["error", { "endOfLine": "auto" }],
+        "@typescript-eslint/explicit-member-accessibility": "error",
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowTypedFunctionExpressions": false
+          }
+        ],
+        "@typescript-eslint/typedef": [
+          "error",
+          {
+            "memberVariableDeclaration": true,
+            "propertyDeclaration": true,
+            "variableDeclaration": true,
+            "parameter": true,
+            "arrowParameter": true
+          }
+        ]
       }
     },
     {
