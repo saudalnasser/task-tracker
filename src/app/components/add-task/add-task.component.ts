@@ -1,3 +1,4 @@
+import { UiService } from './../../services/ui.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../models/Task';
 
@@ -10,7 +11,16 @@ export class AddTaskComponent {
   public text!: string;
   public day!: string;
   public reminder: boolean = false;
+  public showAddTask: boolean = false;
+  private uiService: UiService;
   @Output() public addTask: EventEmitter<Task> = new EventEmitter();
+
+  public constructor(uiService: UiService) {
+    this.uiService = uiService;
+    this.uiService.onAddTaskToggle().subscribe((value: boolean): void => {
+      this.showAddTask = value;
+    });
+  }
 
   public onSubmit(): void {
     if (!this.text) {

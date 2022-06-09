@@ -1,4 +1,5 @@
 import { TaskService } from './services/task.service';
+import { UiService } from './services/ui.service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,7 +24,7 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
     AddTaskComponent,
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, FontAwesomeModule],
-  providers: [TaskService],
+  providers: [TaskService, UiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

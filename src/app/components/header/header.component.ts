@@ -1,3 +1,4 @@
+import { UiService } from './../../services/ui.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,8 +8,18 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   public title: string = 'Task Tracker';
+  public showAddTask: boolean;
+  private uiService: UiService;
 
-  public onAddButtonClick(): void {
-    console.log('click!');
+  public constructor(uiService: UiService) {
+    this.uiService = uiService;
+    this.showAddTask = false;
+    this.uiService.onAddTaskToggle().subscribe((value: boolean): void => {
+      this.showAddTask = value;
+    });
+  }
+
+  public onAddTaskButtonClick(): void {
+    this.uiService.toggleAddTask();
   }
 }
