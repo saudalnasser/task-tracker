@@ -5,8 +5,13 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class UiService {
-  private addTaskToggleValue: boolean = false;
-  private subject: Subject<any> = new Subject();
+  private addTaskToggleValue: boolean;
+  private subject: Subject<any>;
+
+  public constructor() {
+    this.addTaskToggleValue = false;
+    this.subject = new Subject();
+  }
 
   public toggleAddTask(): void {
     this.addTaskToggleValue = !this.addTaskToggleValue;

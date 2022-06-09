@@ -9,15 +9,17 @@ import { environment } from 'src/environments/environment';
 })
 export class TaskService {
   private readonly httpOptions: HttpHeaders;
+
   private apiUrl: string;
   private http: HttpClient;
 
   public constructor(http: HttpClient) {
-    this.apiUrl = `${environment.apiBaseUrl}/tasks`;
-    this.http = http;
     this.httpOptions = new HttpHeaders({
       'Content-Type': 'application/json',
     });
+
+    this.apiUrl = `${environment.apiBaseUrl}/tasks`;
+    this.http = http;
   }
 
   public getTasks(): Observable<Task[]> {

@@ -8,9 +8,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input() public color!: string;
   @Input() public text!: string;
-  @Output() public btnClick: EventEmitter<any> = new EventEmitter();
+  @Output() public btnClick: EventEmitter<any>;
 
-  public onClick(): void {
+  public constructor() {
+    this.btnClick = new EventEmitter();
+  }
+
+  protected onClick(): void {
     this.btnClick.emit();
   }
 }

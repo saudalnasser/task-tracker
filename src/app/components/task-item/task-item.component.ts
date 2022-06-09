@@ -8,16 +8,24 @@ import { Task } from '../../models/Task';
   styleUrls: ['./task-item.component.css'],
 })
 export class TaskItemComponent {
-  public deleteIcon: IconDefinition = faTimes;
   @Input() public task!: Task;
-  @Output() public delete: EventEmitter<Task> = new EventEmitter();
-  @Output() public toggleReminder: EventEmitter<Task> = new EventEmitter();
+  @Output() public delete: EventEmitter<Task>;
+  @Output() public toggleReminder: EventEmitter<Task>;
 
-  public onDelete(task: Task): void {
+  protected deleteIcon: IconDefinition;
+
+  public constructor() {
+    this.delete = new EventEmitter<Task>();
+    this.toggleReminder = new EventEmitter<Task>();
+
+    this.deleteIcon = faTimes;
+  }
+
+  protected onDelete(task: Task): void {
     this.delete.emit(task);
   }
 
-  public onToggleReminder(task: Task): void {
+  protected onToggleReminder(task: Task): void {
     this.toggleReminder.emit(task);
   }
 }

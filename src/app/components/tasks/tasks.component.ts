@@ -8,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnInit {
-  public tasks: Task[] = [];
+  protected tasks: Task[];
   private taskService: TaskService;
 
   public constructor(taskService: TaskService) {
+    this.tasks = [];
     this.taskService = taskService;
   }
 
@@ -21,18 +22,18 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  public onDelete(task: Task): void {
+  protected onDelete(task: Task): void {
     this.taskService.deleteTask(task).subscribe((): void => {
       this.tasks = this.tasks.filter((t: Task): boolean => t.id !== task.id);
     });
   }
 
-  public onToggleReminder(task: Task): void {
+  protected onToggleReminder(task: Task): void {
     task.reminder = !task.reminder;
     this.taskService.updateTask(task).subscribe();
   }
 
-  public onAddTask(task: Task): void {
+  protected onAddTask(task: Task): void {
     this.taskService.addTask(task).subscribe((task: Task): void => {
       this.tasks.push(task);
     });

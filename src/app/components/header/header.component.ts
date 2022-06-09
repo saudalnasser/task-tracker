@@ -7,19 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  public title: string = 'Task Tracker';
-  public showAddTask: boolean;
+  protected title: string;
+  protected showAddTask: boolean;
   private uiService: UiService;
 
   public constructor(uiService: UiService) {
-    this.uiService = uiService;
+    this.title = 'Task Tracker';
     this.showAddTask = false;
+    this.uiService = uiService;
+
     this.uiService.onAddTaskToggle().subscribe((value: boolean): void => {
       this.showAddTask = value;
     });
   }
 
-  public onAddTaskButtonClick(): void {
+  protected onAddTaskButtonClick(): void {
     this.uiService.toggleAddTask();
   }
 }

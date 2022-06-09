@@ -8,21 +8,29 @@ import { Task } from '../../models/Task';
   styleUrls: ['./add-task.component.css'],
 })
 export class AddTaskComponent {
-  public text!: string;
-  public day!: string;
-  public reminder: boolean = false;
-  public showAddTask: boolean = false;
+  @Output() public addTask: EventEmitter<Task>;
+
+  protected text: string;
+  protected day: string;
+  protected reminder: boolean;
+  protected showAddTask: boolean;
   private uiService: UiService;
-  @Output() public addTask: EventEmitter<Task> = new EventEmitter();
 
   public constructor(uiService: UiService) {
+    this.addTask = new EventEmitter();
+
+    this.text = '';
+    this.day = '';
+    this.reminder = false;
+    this.showAddTask = false;
     this.uiService = uiService;
+
     this.uiService.onAddTaskToggle().subscribe((value: boolean): void => {
       this.showAddTask = value;
     });
   }
 
-  public onSubmit(): void {
+  protected onSubmit(): void {
     if (!this.text) {
       alert('Please add a task!');
       return;
