@@ -1,6 +1,6 @@
-# Tracker
+# task-tracker
 
-This is a project based on a [Youtube Course](https://youtu.be/3dHNOWTI7H8) about Angular, and it was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+This is my first project using angular it is based on a [Youtube Course](https://youtu.be/3dHNOWTI7H8) and it was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1
 
 ## Development server
 
