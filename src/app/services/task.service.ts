@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Task } from '../models/Task';
 import { environment } from 'src/environments/environment';
 
@@ -8,12 +8,16 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class TaskService {
+  private readonly httpOptions: HttpHeaders;
   private apiUrl: string;
   private http: HttpClient;
 
   public constructor(http: HttpClient) {
     this.apiUrl = `${environment.apiBaseUrl}/tasks`;
     this.http = http;
+    this.httpOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
   }
 
   public getTasks(): Observable<Task[]> {
@@ -23,5 +27,10 @@ export class TaskService {
   public deleteTask(task: Task): Observable<Task> {
     const url: string = `${this.apiUrl}/${task.id}`;
     return this.http.delete<Task>(url);
+  }
+
+  public updateTask(task: Task): Observable<Task> {
+    const url: string = `${this.apiUrl}/${task.id}`;
+    return this.http.put<Task>(url, task, { headers: this.httpOptions });
   }
 }

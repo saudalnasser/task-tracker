@@ -11,8 +11,13 @@ export class TaskItemComponent {
   public deleteIcon: IconDefinition = faTimes;
   @Input() public task!: Task;
   @Output() public delete: EventEmitter<Task> = new EventEmitter();
+  @Output() public toggleReminder: EventEmitter<Task> = new EventEmitter();
 
   public onDelete(task: Task): void {
     this.delete.emit(task);
+  }
+
+  public onToggleReminder(task: Task): void {
+    this.toggleReminder.emit(task);
   }
 }
